@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ashenbound — Data Structures for the Living Death</title>
+  <meta name="description" content="A deterministic 2D Souls-like action game engine driven by Data Structures and Algorithms." />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Main Game Container -->
+  <div id="game-viewport" class="viewport">
+    
+    <!-- Canvas 2D Engine Rendering Target -->
+    <canvas id="game-canvas" width="640" height="360"></canvas>
+
+    <!-- Post-Processing Overlays -->
+    <div id="crt-overlay" class="crt-scanlines"></div>
+    <div id="vignette-overlay" class="vignette"></div>
+
+    <!-- UI Layer Stack Container -->
+    <div id="ui-root" class="ui-container">
+      
+      <!-- Gameplay HUD -->
+      <div id="hud" class="hud-layer">
+        <div class="hud-top-left">
+          <div class="hp-bar-container">
+            <span class="hp-icon">💖</span>
+            <div class="hp-bar-track">
+              <div id="hp-bar-fill" class="hp-bar-fill" style="width: 100%;"></div>
+            </div>
+            <span id="hp-text" class="hp-text">100 / 100</span>
+          </div>
+          <div class="flask-container">
+            <span class="flask-icon">🧪</span>
+            <span id="flask-text" class="flask-text">x 1</span>
+          </div>
+        </div>
+
+        <div class="hud-top-right">
+          <div id="weapon-display" class="weapon-display">
+            <span class="weapon-label">WEAPON:</span>
+            <span id="weapon-name" class="weapon-name">SWORD</span>
+          </div>
+        </div>
+
+        <!-- Boss Health Bar (Hidden until boss aggro) -->
+        <div id="boss-hud" class="boss-hud-container hidden">
+          <div class="boss-title-row">
+            <span id="boss-name" class="boss-name">FOREST WARDEN</span>
+            <span id="boss-phase-text" class="boss-phase-text">PHASE 1</span>
+          </div>
+          <div class="boss-hp-track">
+            <div id="boss-hp-fill" class="boss-hp-fill" style="width: 100%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Area Lore Modal Overlay (Pauses engine updates) -->
+      <div id="lore-modal" class="modal-layer hidden">
+        <div class="lore-card">
+          <div class="lore-divider"></div>
+          <h2 id="lore-region-title" class="lore-title">FORSAKEN WOODS</h2>
+          <p id="lore-text" class="lore-body">A dark, corrupted wood choked with ancient ruins and tangled earth roots.</p>
+          <div class="lore-footer">
+            <span class="prompt-key">[ E ]</span> Press E to proceed
+          </div>
+        </div>
+      </div>
+
+      <!-- Pause Menu Stack State -->
+      <div id="pause-modal" class="modal-layer hidden">
+        <div class="pause-card">
+          <h1 class="pause-title">GAME PAUSED</h1>
+          <ul class="pause-menu-list">
+            <li class="menu-item active">RESUME</li>
+            <li class="menu-item">CONTROLS</li>
+            <li class="menu-item">RESET TO SHRINE</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Live DSA Telemetry Overlay (Toggled via F1 or ?debug=true) -->
+      <div id="telemetry-box" class="telemetry-overlay">
+        <div class="telemetry-header">
+          <span class="telemetry-badge">DSA TELEMETRY [F1]</span>
+          <span id="telemetry-fps" class="telemetry-fps">FPS: 60 (16.6ms)</span>
+        </div>
+        <div class="telemetry-body">
+          <div class="telemetry-row">
+            <span class="label">Entity List Size (DLL):</span>
+            <span id="tel-dll-size" class="value">1 (Player)</span>
+          </div>
+          <div class="telemetry-row">
+            <span class="label">Priority Heap Root:</span>
+            <span id="tel-heap-root" class="value">IDLE (P4)</span>
+          </div>
+          <div class="telemetry-row">
+            <span class="label">World Graph Node:</span>
+            <span id="tel-graph-node" class="value">Shrine 1 (Forsaken Woods)</span>
+          </div>
+          <div class="telemetry-row">
+            <span class="label">Boss AI FIFO Combo:</span>
+            <span id="tel-fifo-queue" class="value">EMPTY</span>
+          </div>
+          <div class="telemetry-row">
+            <span class="label">Memory Alloc Status:</span>
+            <span id="tel-mem-status" class="value status-good">OPTIMAL (O(1) Purge)</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
