@@ -1,29 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8yash100main"]
+[gd_scene format=3 uid="uid://c8yash100main"]
 
-[ext_resource type="Script" path="res://scripts/main/Main.gd" id="1_main"]
+[ext_resource type="Script" uid="uid://sye1grvx7dic" path="res://scripts/main/Main.gd" id="1_main"]
+[ext_resource type="PackedScene" uid="uid://bodvlbym3wrx6" path="res://scenes/player/Player.tscn" id="2_nha0i"]
 
-[node name="Main" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
+size = Vector2(3000, 40)
+
+[node name="Main" type="Node2D" unique_id=1823723047]
 script = ExtResource("1_main")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 640.0
-offset_bottom = 360.0
+[node name="Background" type="ColorRect" parent="." unique_id=254348345]
+offset_left = -500.0
+offset_top = -200.0
+offset_right = 3000.0
+offset_bottom = 500.0
 color = Color(0.054902, 0.054902, 0.0784314, 1)
 
-[node name="TitleLabel" type="Label" parent="."]
-offset_top = 150.0
-offset_right = 640.0
-offset_bottom = 180.0
-theme_override_colors/font_color = Color(0.772549, 0.627451, 0.34902, 1)
-theme_override_font_sizes/font_size = 24
-text = "ASHENBOUND"
-horizontal_alignment = 1
+[node name="Ground" type="StaticBody2D" parent="." unique_id=36635402]
+position = Vector2(1250, 340)
 
-[node name="SubLabel" type="Label" parent="."]
-offset_top = 185.0
-offset_right = 640.0
-offset_bottom = 210.0
-theme_override_colors/font_color = Color(0.545098, 0, 0, 1)
-theme_override_font_sizes/font_size = 14
-text = "Data Structures for the Living Death (Godot 4 Engine)"
-horizontal_alignment = 1
+[node name="ColorRect" type="ColorRect" parent="Ground" unique_id=1764263578]
+offset_left = -1500.0
+offset_top = -20.0
+offset_right = 1500.0
+offset_bottom = 20.0
+color = Color(0.180392, 0.180392, 0.239216, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=1990080931]
+shape = SubResource("RectangleShape2D_ground")
+
+[node name="Player" parent="." unique_id=2297451 instance=ExtResource("2_nha0i")]
+position = Vector2(100, 303)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1942066830]
+position = Vector2(0, -20)
+limit_left = -500
+limit_top = -500
+limit_right = 3000
+limit_bottom = 500

@@ -1,3 +1,5 @@
+res://scenes/main/Main.tscn
+res://scenes/player/Player.tscn
 res://scripts/entities/PlayerController.gd
-res://scripts/main/Main.gd
-res://scripts/ui/HUDController.gd
+res://scripts/bosses/ForestWarden.gd
+res://scripts/config/GameConfig.gd
