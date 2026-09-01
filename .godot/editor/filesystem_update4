@@ -1,0 +1,3 @@
+res://scripts/entities/PlayerController.gd
+res://scripts/main/Main.gd
+res://scripts/ui/HUDController.gd
