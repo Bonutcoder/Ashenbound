@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8boss1wardentt"]
+
+[ext_resource type="Script" path="res://scripts/bosses/ForestWarden.gd" id="1_warden"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_warden"]
+size = Vector2(28, 44)
+
+[node name="ForestWarden" type="CharacterBody2D"]
+script = ExtResource("1_warden")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -14.0
+offset_top = -44.0
+offset_right = 14.0
+color = Color(0.180392, 0.490196, 0.196078, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -22)
+shape = SubResource("RectangleShape2D_warden")

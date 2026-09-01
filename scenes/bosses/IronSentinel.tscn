@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8boss2sentineltt"]
+
+[ext_resource type="Script" path="res://scripts/bosses/IronSentinel.gd" id="1_sentinel"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sentinel"]
+size = Vector2(36, 48)
+
+[node name="IronSentinel" type="CharacterBody2D"]
+script = ExtResource("1_sentinel")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -18.0
+offset_top = -48.0
+offset_right = 18.0
+color = Color(0.419608, 0.447059, 0.501961, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_sentinel")

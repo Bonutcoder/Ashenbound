@@ -32,11 +32,9 @@ func _ready() -> void:
 	flasks = GameConfig.PLAYER["initial_flasks"]
 
 func _physics_process(delta: float) -> void:
-	# Add gravity
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	# Process Player Inputs
 	_handle_movement()
 	_handle_combat_actions()
 
@@ -55,35 +53,31 @@ func _handle_movement() -> void:
 		velocity.y = GameConfig.PLAYER["jump_force"]
 
 func _handle_combat_actions() -> void:
-	# Parry (RMB)
 	if Input.is_action_just_pressed("parry") and not is_parrying and not is_dodging:
 		_execute_parry()
 
-	# Dodge (Space)
 	if Input.is_action_just_pressed("dodge") and not is_dodging and not is_parrying:
 		_execute_dodge()
 
-	# Heal (R)
 	if Input.is_action_just_pressed("heal"):
 		_execute_heal()
 
 func _execute_parry() -> void:
 	is_parrying = true
 	parry_timer.start(GameConfig.PLAYER["parry_window_ms"] / 1000.0)
-	print("🛡️ Parry Window Active (150ms)")
+	print("Parry Window Active (150ms)")
 
 func _execute_dodge() -> void:
 	is_dodging = true
 	dodge_timer.start(GameConfig.PLAYER["dodge_duration_ms"] / 1000.0)
 	var facing = -1.0 if velocity.x < 0 else 1.0
 	velocity.x = facing * GameConfig.PLAYER["dodge_speed"]
-	print("🌀 Dodge Roll Active (i-frames)")
+	print("Dodge Roll Active (i-frames)")
 
 func _execute_heal() -> void:
 	if flasks <= 0 or current_hp >= max_hp: return
 	
 	flasks -= 1
-	# Dynamic Tiered Restore Rule
 	if max_hp <= 100:
 		if current_hp <= 30: current_hp += 70
 		else: current_hp = max_hp
@@ -94,7 +88,7 @@ func _execute_heal() -> void:
 	current_hp = mini(current_hp, max_hp)
 	emit_signal("hp_changed", current_hp, max_hp)
 	emit_signal("flask_changed", flasks, max_flasks)
-	print("🧪 Healed! HP:", current_hp, "/", max_hp)
+	print("Healed! HP:", current_hp, "/", max_hp)
 
 func _on_parry_timer_timeout() -> void:
 	is_parrying = false

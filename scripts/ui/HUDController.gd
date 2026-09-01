@@ -14,11 +14,9 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	# F1 Toggle Telemetry Box
 	if Input.is_action_just_pressed("telemetry_toggle"):
 		telemetry_box.visible = not telemetry_box.visible
 
-	# Update FPS counter
 	if tel_fps_label and telemetry_box.visible:
 		var fps = Engine.get_frames_per_second()
 		tel_fps_label.text = "FPS: %d (%.1fms)" % [fps, delta * 1000.0]
@@ -32,7 +30,7 @@ func update_hp(current_hp: int, max_hp: int) -> void:
 
 func update_flasks(current_flasks: int, max_flasks: int) -> void:
 	if flask_label:
-		flask_label.text = "  🧪 x %d" % current_flasks
+		flask_label.text = "  Flasks x %d" % current_flasks
 
 func update_telemetry(dll_size: int, heap_root_str: String) -> void:
 	if tel_dll_label:
