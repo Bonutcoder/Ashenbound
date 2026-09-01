@@ -1,4 +1,4 @@
-name: Deploy Ashenbound to GitHub Pages
+name: Export Godot 4 HTML5 Web App to GitHub Pages
 
 on:
   push:
@@ -9,28 +9,24 @@ permissions:
   contents: write
 
 jobs:
-  build-and-deploy:
+  export-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js Environment
-        uses: actions/setup-node@v4
+      - name: Setup Godot 4 Engine Action
+        uses: chickensoft-games/setup-godot@v2
         with:
-          node-version: 18
-          cache: 'npm'
+          version: 4.2.2
+          use-dotnet: false
 
-      - name: Install Dependencies
-        run: npm ci
+      - name: Build & Export Godot 4 HTML5 WebAssembly App
+        run: |
+          mkdir -p dist
+          godot --headless --export-release "Web" dist/index.html
 
-      - name: Run DSA Vitest Suite
-        run: npm run test
-
-      - name: Build Production Bundle
-        run: npm run build
-
-      - name: Deploy to GitHub Pages
+      - name: Deploy Static WebAssembly to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
