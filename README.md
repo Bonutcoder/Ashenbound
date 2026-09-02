@@ -1,8 +1,8 @@
 # Ashenbound — Data Structures for the Living Death
 
 > **Version:** 1.0.0  
-> **Tech Stack:** Vanilla ES6+ JavaScript, HTML5 Canvas 2D, CSS3, Vite, Vitest, Docker, Nginx, GitHub Actions  
-> **Deployment:** GitHub Pages & Docker Container  
+> **Tech Stack:** Vanilla ES6+ JavaScript, HTML5 Canvas 2D, CSS3, Vite, Vitest, GitHub Actions  
+> **Deployment:** GitHub Pages  
 > **Cost Guarantee:** 100% Free & Open Source ($0.00 Cost Stack)
 
 ---
@@ -95,21 +95,6 @@ npm run test
 
 # 5. Build static production bundle
 npm run build
-```
-
----
-
-## 🐳 Docker Deployment
-
-The application includes a multi-stage Docker build with Nginx Alpine for stateless container deployment:
-
-```powershell
-# Build and run using Docker Compose (Accessible at http://localhost:8080)
-docker-compose up -d
-
-# Or build manually using Docker CLI
-docker build -t ashenbound:latest .
-docker run -d -p 8080:80 ashenbound:latest
 ```
 
 ---
